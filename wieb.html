@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adnan Nazir | Cosmic Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Outfit:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --accent: #9d50bb;
+            --accent-light: #6e48aa;
+            --bg: #020205;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { 
+            background: var(--bg); 
+            color: #ffffff; 
+            font-family: 'Outfit', sans-serif; 
+            overflow-x: hidden; 
+            line-height: 1.6;
+        }
+
+        /* --- STUNNING BACKGROUND --- */
+        #universe {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: radial-gradient(circle at 20% 30%, #1a1a2e 0%, #020205 100%);
+        }
+        .orb {
+            position: absolute; border-radius: 50%; filter: blur(80px); z-index: -1; opacity: 0.4;
+            animation: drift 20s infinite alternate;
+        }
+        .orb-1 { width: 400px; height: 400px; background: var(--accent); top: -100px; right: -100px; }
+        .orb-2 { width: 300px; height: 300px; background: var(--accent-light); bottom: -50px; left: -50px; }
+        @keyframes drift { from { transform: translate(0,0); } to { transform: translate(50px, 100px); } }
+
+        /* --- NAVIGATION --- */
+        nav { 
+            position: fixed; top: 0; width: 100%; padding: 1.5rem 10%; 
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            background: rgba(2, 2, 5, 0.7); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border);
+        }
+        .logo { font-family: 'Orbitron'; font-weight: 900; font-size: 1.8rem; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+        .nav-links a { text-decoration: none; color: rgba(255,255,255,0.7); font-weight: 500; transition: 0.3s; font-size: 0.9rem; letter-spacing: 1px; }
+        .nav-links a:hover { color: #fff; text-shadow: 0 0 15px var(--accent); }
+
+        /* --- HERO --- */
+        section { padding: 120px 10%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .hero { text-align: center; }
+        .hero h1 { font-family: 'Orbitron'; font-size: clamp(3rem, 8vw, 6rem); line-height: 1; margin-bottom: 1rem; }
+        .hero p { font-size: 1.5rem; color: #aaa; max-width: 600px; margin: 0 auto 2rem; }
+        
+        .btn { 
+            padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; 
+            display: inline-block; transition: 0.5s; border: 1px solid var(--accent); position: relative; overflow: hidden;
+        }
+        .btn-main { background: var(--accent); color: white; box-shadow: 0 0 30px rgba(157, 80, 187, 0.4); }
+        .btn-main:hover { transform: scale(1.05); box-shadow: 0 0 50px rgba(157, 80, 187, 0.6); }
+
+        /* --- CARDS & GRIDS --- */
+        .section-header { font-family: 'Orbitron'; margin-bottom: 4rem; text-align: center; font-size: 2.5rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2.5rem; }
+        .card { 
+            background: var(--card-bg); border: 1px solid var(--border); padding: 3rem; border-radius: 24px;
+            backdrop-filter: blur(10px); transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .card:hover { transform: translateY(-15px); border-color: var(--accent); background: rgba(255,255,255,0.06); }
+        .card h3 { font-family: 'Orbitron'; margin-bottom: 1rem; color: var(--accent); }
+
+        /* --- CONTACT INFO --- */
+        .contact-layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; }
+        .contact-box { padding: 2rem; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); }
+        .info-row { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; }
+        .info-row i { font-size: 1.5rem; color: var(--accent); width: 30px; }
+        
+        form input, form textarea { 
+            width: 100%; padding: 18px; margin-bottom: 1.5rem; background: rgba(255,255,255,0.03); 
+            border: 1px solid var(--border); border-radius: 12px; color: white; font-family: inherit;
+        }
+        form input:focus { outline: none; border-color: var(--accent); background: rgba(255,255,255,0.07); }
+
+        .socials { display: flex; gap: 1.5rem; margin-top: 2rem; }
+        .socials a { 
+            width: 50px; height: 50px; display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--border); border-radius: 50%; color: white; text-decoration: none; transition: 0.3s;
+        }
+        .socials a:hover { background: var(--accent); border-color: var(--accent); transform: rotate(360deg); }
+
+        footer { text-align: center; padding: 4rem; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid var(--border); }
+
+        @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; } .hero h1 { font-size: 4rem; } }
+    </style>
+</head>
+<body>
+
+    <div id="universe">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <canvas id="stars"></canvas>
+    </div>
+
+    <nav>
+        <div class="logo">ADNAN.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Work</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1 id="glitch-name">ADNAN NAZIR</h1>
+        <p>Architecting digital universes and exploring the logic of space-time.</p>
+        <a href="#projects" class="btn btn-main">EXPLORE WORK</a>
+    </section>
+
+    <section id="about">
+        <h2 class="section-header">The Mission</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>The Vision</h3>
+                <p>Merging the complex beauty of Physics with the precision of Web Development to create unforgettable digital experiences.</p>
+            </div>
+            <div class="card">
+                <h3>Skills</h3>
+                <p>Full-Stack Web Dev (MERN), Python, Data Visualization, and Creative UI Design.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-header">Selected Works</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Black Hole Sim</h3>
+                <p>A visual exploration of light bending around an event horizon using JavaScript math.</p>
+            </div>
+            <div class="card">
+                <h3>Equix Kart</h3>
+                <p>A high-end tech e-commerce experience with 3D product previews.</p>
+            </div>
+            <div class="card">
+                <h3>Quantum Portfolio</h3>
+                <p>This exact interface—built for performance and visual impact.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-header">Transmission</h2>
+        <div class="contact-layout">
+            <div class="contact-box">
+                <div class="info-row">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <small>Email</small>
+                        <p>adnannazirsheikh021@gmail.com</p>
+                    </div>
+                </div>
+                <div class="info-row">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <small>Phone</small>
+                        <p>+91 8899198063</p>
+                    </div>
+                </div>
+                <div class="socials">
+                    <a href="https://www.instagram.com/sheikh4dnan_?igsh=MXM3bDZ6cHQ4d2s0MQ=="><i class="fab fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/adnannazir"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/adnannazir"><i class="fab fa-github"></i></a>
+                    <a href="https://twitter.com/adnannazir"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+
+            <form>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email Address" required>
+                <textarea rows="6" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn btn-main" style="width: 100%;">SEND MESSAGE</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 Adnan Nazir | Designed for the Future
+    </footer>
+
+    <script>
+        // Smooth Star Background
+        const canvas = document.getElementById('stars');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            stars = [];
+            for(let i=0; i<200; i++) {
+                stars.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 1.5,
+                    opacity: Math.random()
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+                ctx.fill();
+                s.opacity += 0.01 * (Math.random() > 0.5 ? 1 : -1);
+                if(s.opacity < 0) s.opacity = 0;
+                if(s.opacity > 1) s.opacity = 1;
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+
+        // Simple Fade in effect for sections
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(s => {
+            s.style.opacity = 0;
+            s.style.transform = "translateY(50px)";
+            s.style.transition = "1s all ease-out";
+            observer.observe(s);
+        });
+    </script>
+</body>
+</html>
